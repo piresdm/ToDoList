@@ -1,0 +1,83 @@
+.logo {
+  display: block;
+  margin: 40px auto;
+  width: 60%;
+}
+
+.todo-input {
+  width: 90%;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  margin: 0 auto 1rem auto;
+  border: 1px solid rgb(118, 118, 118);
+  
+  &:focus {
+    outline: 0;
+  }
+}
+
+.todo-item {
+  margin: 0.1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation-duration: 0.3s;
+  padding: 0 1.2rem;
+}
+
+.remove-item {
+  cursor: pointer;
+  
+  &:hover {
+    color: black;
+  }
+}
+
+.todo-item-left { // later
+  display: flex;
+  align-items: center;
+}
+
+.todo-item-label {
+  padding: 0.5rem;
+  border: 1px solid white;
+ 
+}
+
+.todo-item-edit {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin-left: 0.5rem;
+  padding: 0.3rem;
+  border: 1px solid #ccc; //override defaults
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    
+  &:focus {
+    outline: 0;
+  }
+}
+
+.completed {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.extra-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+  border-top: 1px solid lightgrey;
+  padding:1rem;
+  margin-top: 1.5rem;
+}
+
+// CSS Transitions
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}

@@ -1,0 +1,54 @@
+<div class="card">
+
+  <img class="logo" alt="Elógica Logo" src="/assets/logo.png">
+
+  <input type="text" class="todo-input" placeholder="O que você precisa fazer?" [(ngModel)]="todoTitle"(keyup.enter)="addTodo()">
+  
+  <div>
+    
+    <div class="btn-group row d-flex justify-content-center my-2">
+      
+      <button class=" btn btn-outline-secondary shadow-none" [ngClass]="{'active': filter === 'all'}" (click)="filter='all'">Tudo</button>
+      <button class="btn btn-outline-secondary shadow-none" [ngClass]="{'active': filter === 'active'}" (click)="filter='active'">Fazer</button>
+      <button class="btn btn-outline-secondary shadow-none" [ngClass]="{'active': filter === 'completed'}" (click)="filter='completed'">Feito</button>
+    
+    </div>
+
+  </div>
+
+  <div class="todo-item list-group-item-action" *ngFor="let todo of todosFiltered()" @fade>
+    
+    <div class="todo-item-left">
+      
+      <input type="checkbox" [(ngModel)]="todo.completed" (change)="doneEdit(todo)">
+      
+      <div *ngIf="!todo.editing; else editingTodo" class="todo-item-label" [ngClass]="{ 'completed' : todo.completed }" (dblclick)="editTodo(todo)">{{ todo.title }}
+      </div>
+      
+      <ng-template #editingTodo>
+        <input type="text" class="todo-item-edit" [(ngModel)]="todo.title" (blur)="doneEdit(todo)"(keyup.enter)="doneEdit(todo)" (keyup.esc)="cancelEdit(todo)" autofocus>
+      </ng-template>
+   
+    </div>
+
+    <div class="remove-item" (click)="deleteTodo(todo.id)">
+      &times;
+    </div>
+
+  </div>
+
+  <div class="extra-container">
+    
+    <div> <label class="my-0">
+      <input type="checkbox" (change)="checkAllTodos()" [(ngModel)]="!anyRemainingModel"> Marcar Tudo
+    </label></div>
+    
+    <div>{{ remaining() }} itens restantes</div>
+
+    <div *ngIf="atLeastOneCompleted()">
+      <button class="btn btn-secondary" (click)="clearCompleted()">Limpar</button>
+    </div>
+
+  </div>
+
+</div>
